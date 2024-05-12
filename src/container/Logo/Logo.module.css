@@ -1,0 +1,18 @@
+.Logo{
+    height: 46px;
+    width: 186px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: #fff;
+
+    .logoImage{
+        height: 30px;
+        width: 60px;
+    }
+
+    .text{
+        font-weight: 600;
+    }
+}

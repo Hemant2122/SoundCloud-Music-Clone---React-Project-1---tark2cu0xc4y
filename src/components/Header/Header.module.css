@@ -1,0 +1,16 @@
+.headerContainer{
+    background-color: #333;
+    height: 46px;
+    width: 100%;
+    
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .logo{
+        background-color: #000;
+        height: 46px;
+        width: 186px;
+    }
+}

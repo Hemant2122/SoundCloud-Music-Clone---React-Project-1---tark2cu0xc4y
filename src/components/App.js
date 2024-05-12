@@ -1,5 +1,13 @@
+import Home from "../pages/Home/Home";
+
 function App() {
-  return <div className='text-3xl font-bold underline'>App</div>;
+  return (
+    <>
+      <div>
+        <Home />
+      </div>
+    </>
+  );
 }
 
 export default App;
