@@ -2,6 +2,7 @@
     background-color: #333;
     height: 46px;
     width: 100%;
+    /* position: fixed; */
     
 
     display: flex;
@@ -13,4 +14,43 @@
         height: 46px;
         width: 186px;
     }
+
+    .headerLink{
+        display: flex;
+        color: #d6d2d2;
+        gap: 10px;
+        
+        li{
+            height: 46px;
+            width: 100px;
+            border-right: 1px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+    }
+
+    .upload{
+        color: #d6d2d2;
+        margin-left: 15px;
+    }
+
+    .pages{
+        color: #d6d2d2;
+        margin-left: 15px;
+
+        li{
+            font-size: 40px;
+            font-weight: 700;
+            position: relative;
+            bottom: 11px;
+        }
+    }
+
+}
+
+li:hover{
+    color: #fff;
 }

@@ -1,11 +1,11 @@
-import Header from "../../components/Header/Header"
+
 import styles from "./Home.module.css"
 
 function Home()  {
   return (
     <>
         <div className={styles.homeContainer}>
-            <Header />
+            <h1>Home Pages</h1>
         </div>
     </>
   )

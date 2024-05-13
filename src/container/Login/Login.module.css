@@ -1,0 +1,12 @@
+.sign_in{
+    box-sizing: border-box;
+    color: #fff;
+    border: 1px solid #cdcaca;
+    margin-left: 10px;
+    padding: 1px 10px;
+    border-radius: 5px;
+}
+
+.sign_in:hover{
+    border: 1px solid #fff;
+}
