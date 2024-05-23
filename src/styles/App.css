@@ -1,0 +1,13 @@
+*{
+    font-family: sans-serif;
+}
+
+.displayPage{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 46px;
+    /* margin: 0 10.7%; */
+}

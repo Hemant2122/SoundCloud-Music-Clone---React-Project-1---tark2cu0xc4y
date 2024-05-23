@@ -15,13 +15,13 @@ function Header() {
           </NavLink>
         </ul>
         <ul className={styles.headerLink}>
-          <li>
-            <NavLink to={"/"}>Home</NavLink>
+          <li className={styles.link}>
+            <NavLink to={"/home"}>Home</NavLink>
           </li>
-          <li>
+          <li className={styles.link}>
             <NavLink to={"/feed"}>Feed</NavLink>
           </li>
-          <li>
+          <li className={styles.link}>
             <NavLink to={"/library"}>Library</NavLink>
           </li>
         </ul>

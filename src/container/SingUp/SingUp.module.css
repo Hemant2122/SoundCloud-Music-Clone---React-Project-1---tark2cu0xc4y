@@ -3,7 +3,8 @@
     color: #fff;
     background-color: #f50;
     border: 1px solid #f50;
+    height: 26px;
+    width: 124px;
     margin-left: 15px;
-    padding: 1px 10px;
     border-radius: 5px;
 }

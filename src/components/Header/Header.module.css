@@ -1,10 +1,10 @@
 .headerContainer{
     background-color: #333;
     height: 46px;
-    width: 100%;
-    /* position: fixed; */
+    width: 100vw;
+    position: fixed;
     
-
+    z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,22 +12,21 @@
     .logo{
         background-color: #000;
         height: 46px;
-        width: 186px;
+        width: 205px;
     }
 
     .headerLink{
         display: flex;
         color: #d6d2d2;
-        gap: 10px;
         
-        li{
+        .link{
+            display: block;
+            padding: 12px 0;
             height: 46px;
-            width: 100px;
-            border-right: 1px solid #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+            box-sizing: border-box;
+            text-align: center;
+            width: 104px;
+            border-right: 1px solid #111
         }
 
     }
@@ -54,3 +53,21 @@
 li:hover{
     color: #fff;
 }
+
+@media only screen and (max-width: 1090px) {
+    .headerLink{
+        width: 180px;
+        white-space: nowrap;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media only screen and (max-width: 953px) {
+    .headerContainer{
+        width: 978px;
+    }
+}
+
+
+
