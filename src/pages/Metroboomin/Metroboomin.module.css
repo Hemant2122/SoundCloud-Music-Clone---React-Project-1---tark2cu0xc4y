@@ -18,6 +18,51 @@
         left: 25px;
         opacity: 1;
     }
+
+    .mentroboominMessage{
+        color: white;
+        position: absolute;
+        top: 1.5em;
+        left: 16em;
+
+        #MetroboominH1{
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+
+            .checkicon{
+                height: 20px;
+                width: 20px;
+                background-color: white;
+                border-radius: 50%;
+                margin-top: 10px;
+                margin-left: 5px;
+            }
+        }
+
+        .MetroboominStates{
+            font-size: 1em;
+            color: #c5c5c6;
+            margin-bottom: 5px;
+        }
+
+        #nextPro{
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+
+            .starCircle{
+                height: 15px;
+                width: 15px;
+                /* background-color: white; */
+                border-radius: 50%;
+                margin-top: 1px;
+                margin-right: 5px;
+            }
+        }
+    }
 }
 
 

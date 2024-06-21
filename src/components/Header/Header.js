@@ -4,6 +4,7 @@ import SearchInput from "../../container/SearchInput/SearchInput";
 import styles from "./Header.module.css";
 import Login from "../../container/Login/Login";
 import SingUp from "../../container/SingUp/SingUp";
+import { HiDotsHorizontal } from "react-icons/hi";
 
 function Header() {
   return (
@@ -39,7 +40,7 @@ function Header() {
         </ul>
         <ul className={styles.pages}>
           <li>
-            <NavLink to={"/pages"} >...</NavLink>
+            <NavLink to={"/pages"} ><HiDotsHorizontal /></NavLink>
           </li>
         </ul>
       </nav>
