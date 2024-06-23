@@ -5,14 +5,20 @@ import Portas from '../../components/PortalsModal/Portas';
 function SingUp() {
 
   const [openModel, setOpenModel] = useState(false);
-
+  const [isState, setIsState] = useState(true);
 
   function openModelAccount(){
     setOpenModel(true);
+    setIsState(false);
+    
   }
 
   function closeModal(){
     setOpenModel(false);
+  }
+
+  function setIsStateModle(){
+    setIsState(true)
   }
 
   return (
@@ -22,7 +28,7 @@ function SingUp() {
       </div>
 
       {
-        openModel && <Portas onClose={closeModal} />
+        openModel && <Portas onClose={closeModal} isState={isState} setIsState={setIsStateModle} />
       }
     </>
   )

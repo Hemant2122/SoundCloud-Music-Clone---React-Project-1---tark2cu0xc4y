@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./CreateAccount.module.css";
 import { IoCloseSharp } from "react-icons/io5";
 
-function CreateAccount({onClose}) {
+function CreateAccount({onClose, setIsState}) {
 
   const [formVal, setFormVal] = useState({
     name: "",
@@ -12,8 +12,6 @@ function CreateAccount({onClose}) {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
-  console.log(formVal, "formVal");
 
   function signUpFormHandler(e, key){
     const val = e.target.value;
@@ -36,17 +34,17 @@ function CreateAccount({onClose}) {
             myHeaders.append("projectID", "tark2cu0xc4y");
 
             const raw = JSON.stringify({
-            "name": formVal.name,
-            "email": formVal.email,
-            "password": formVal.password,
-            "appType": "music"
+                "name": formVal.name,
+                "email": formVal.email,
+                "password": formVal.password,
+                "appType": "music"
             });
 
             const requestOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: raw,
-            redirect: "follow"
+                method: "POST",
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
             };
 
             const response = await fetch(url, requestOptions);
@@ -139,7 +137,9 @@ function CreateAccount({onClose}) {
             <p className={styles.error}>{error}</p>
             <button className={styles.createAccount_btn}>Create Account</button>
             <p>
-              Already heve an account? <span id={styles.sing_in}>Sign in</span>
+              Already heve an account? <span onClick={() => {
+                setIsState(true)
+              }} id={styles.sing_in}>Sign in</span>
             </p>
           </div>
 
