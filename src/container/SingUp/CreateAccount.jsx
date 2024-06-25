@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./CreateAccount.module.css";
 import { IoCloseSharp } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 function CreateAccount({onClose, setIsState}) {
 
@@ -12,6 +13,8 @@ function CreateAccount({onClose, setIsState}) {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
+  const navigate = useNavigate();
 
   function signUpFormHandler(e, key){
     const val = e.target.value;
@@ -138,7 +141,7 @@ function CreateAccount({onClose, setIsState}) {
             <button className={styles.createAccount_btn}>Create Account</button>
             <p>
               Already heve an account? <span onClick={() => {
-                setIsState(true)
+                navigate("/login");
               }} id={styles.sing_in}>Sign in</span>
             </p>
           </div>

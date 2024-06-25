@@ -11,14 +11,18 @@ import Loading from "../../components/Loading/Loading";
 import { IoEarth } from "react-icons/io5";
 import { RiFacebookFill } from "react-icons/ri";
 import { CgPlayPause } from "react-icons/cg";
+import MusicPlayer from "../../components/Music/MusicPlayer";
 
 function Metroboomin() {
   const [musicList, setMusicList] = useState([]);
+  const [selectMusic, setSelectMusic] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
+  const [getMusic, setMusic] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  
 
   useEffect(() => {
-    async function fetchMusicList(){
+    async function fetchMusicList() {
       setIsLoading(true);
       try {
         const url = "https://academics.newtonschool.co/api/v1/music/song";
@@ -28,7 +32,7 @@ function Metroboomin() {
         const requestOptions = {
           method: "GET",
           headers: myHeaders,
-          redirect: "follow"
+          redirect: "follow",
         };
 
         const response = await fetch(url, requestOptions);
@@ -37,19 +41,17 @@ function Metroboomin() {
 
         setMusicList(data);
         // setTimeout(() => {
-          setIsLoading(false);
+        setIsLoading(false);
         // }, 1000);
-          
-        console.log(data, "data");
 
+        // console.log(data, "data");
       } catch (error) {
         console.log(error);
       }
-
     }
 
     fetchMusicList();
-  }, [])
+  }, []);
 
   return (
     <>
@@ -96,9 +98,7 @@ function Metroboomin() {
             <div
               onClick={(e) => {
                 const value = e.target.id;
-                // if(true){
-                //   document.getElementById("items").style.color = "#282727";
-                // }
+
                 console.log(value, "value");
                 document.getElementById(value).style.color = "#f50";
               }}
@@ -159,65 +159,88 @@ function Metroboomin() {
         <div className={styles.musicList_follow_like}>
           {/* music List map */}
           <div className={styles.music_list}>
-            {
-              isLoading ? (
-                <div className={styles.loading}>
-                  <Loading />
-                </div>
-              ) : (
-                <div className={styles.music_container_song}>
-                  <div className={styles.spotlight}>Spotlight</div>
-                  {musicList.map((music) => {
-                    const { thumbnail, artist, audio_url, mood, title, _id } = music;
+            {isLoading ? (
+              <div className={styles.loading}>
+                <Loading />
+              </div>
+            ) : (
+              <div className={styles.music_container_song}>
+                <div className={styles.spotlight}>Spotlight</div>
+                {musicList.map((music) => {
+                  const { thumbnail, artist, audio_url, mood, title, _id } =
+                    music;
 
-                    return (
-                      <>
-                        <div key={_id} className={styles.song_container}>
+                  return (
+                    <>
+                      <div key={_id}>
+                        <div
+                          onClick={() => {
+                            setMusic(true);
+                            setSelectMusic({
+                              thumbnail,
+                              artist: artist[0].name,
+                              audio_url,
+                              title,
+                              _id,
+                            });
+                          }}
+                          className={styles.song_container}
+                        >
                           {/* Images */}
                           <div className={styles.image}>
-                            <img className={styles.img_song} src={thumbnail} alt="thumbnail" />
+                            <img
+                              className={styles.img_song}
+                              src={thumbnail}
+                              alt="thumbnail"
+                            />
                           </div>
 
                           {/* Song Detailes */}
                           <div className={styles.song_details}>
-
                             {/* play artist name title description */}
-                            <div className={styles.play_artist_title_description}>
+                            <div
+                              className={styles.play_artist_title_description}
+                            >
                               <div className={styles.play_btn}>
-                                <FaPlayCircle className={styles.play_btn_icon} />
-                                <CgPlayPause className={styles.playPause_btn_icon} />
+                                {!isPlaying && selectMusic._id === _id ? (
+                                  <CgPlayPause
+                                    onClick={(e) => {
+                                      setIsPlaying(true);
+                                    }}
+                                    className={styles.playPause_btn_icon}
+                                  />
+                                ) : (
+                                  <FaPlayCircle
+                                    onClick={(e) => {
+                                      setIsPlaying(false);
+                                    }}
+                                    className={styles.play_btn_icon}
+                                  />
+                                )}
                               </div>
                               <div className={styles.artist_title_description}>
                                 <div className={styles.artist_name}>
                                   {artist[0].name}
                                 </div>
-                                <div className={styles.title}>
-                                  {title}
-                                </div>
+                                <div className={styles.title}>{title}</div>
                                 <div className={styles.description}>
                                   {artist[0].description}
                                 </div>
                               </div>
                             </div>
                             {/* Mood */}
-                            <div className={styles.mood}>
-                                {mood}
-                            </div>
-                            
+                            <div className={styles.mood}>{mood}</div>
+
                             {/* Song play */}
-                            <div className={styles.song_player}>
-
-                            </div>
-
-                          </div> 
+                            <div className={styles.song_player}></div>
+                          </div>
                         </div>
-                      </>
-                    )
-
-                  })}
-                </div>
-              )
-            }
+                      </div>
+                    </>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           {/* follow like music */}
@@ -240,27 +263,42 @@ function Metroboomin() {
               </div>
 
               <div className={styles.social_media}>
-                <a href="https://www.instagram.com/" className={styles.icon_social_media}>
-                  <IoEarth className={styles.icon_social} /> 
+                <a
+                  href="https://www.instagram.com/"
+                  className={styles.icon_social_media}
+                >
+                  <IoEarth className={styles.icon_social} />
                   Instagram
                 </a>
                 <a href="https://x.com/" className={styles.icon_social_media}>
                   <IoEarth className={styles.icon_social} /> Twitter
                 </a>
-                <p onClick={() => {
-                  alert("coming soon");
-                }} className={styles.icon_social_media}>
+                <p
+                  onClick={() => {
+                    alert("coming soon");
+                  }}
+                  className={styles.icon_social_media}
+                >
                   <IoEarth className={styles.icon_social} /> Website
                 </p>
-                <a href="https://www.youtube.com/" className={styles.icon_social_media}>
+                <a
+                  href="https://www.youtube.com/"
+                  className={styles.icon_social_media}
+                >
                   <IoEarth className={styles.icon_social} /> YouTube
                 </a>
-                <a href="https://www.facebook.com/" className={styles.icon_social_media}>
+                <a
+                  href="https://www.facebook.com/"
+                  className={styles.icon_social_media}
+                >
                   <RiFacebookFill className={styles.icon_social} /> Facebook
                 </a>
-                <p onClick={() => {
-                  alert("coming soon");
-                }} className={styles.icon_social_media}>
+                <p
+                  onClick={() => {
+                    alert("coming soon");
+                  }}
+                  className={styles.icon_social_media}
+                >
                   <IoEarth className={styles.icon_social} /> Sign Up
                 </p>
               </div>
@@ -270,6 +308,17 @@ function Metroboomin() {
           </div>
         </div>
       </div>
+      {getMusic && (
+        <MusicPlayer
+          _id={selectMusic._id}
+          title={selectMusic.title}
+          audio_url={selectMusic.audio_url}
+          artist={selectMusic.artist}
+          thumbnail={selectMusic.thumbnail}
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+        />
+      )}
     </>
   );
 }

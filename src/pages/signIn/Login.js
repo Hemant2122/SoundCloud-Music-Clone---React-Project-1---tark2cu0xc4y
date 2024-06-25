@@ -1,19 +1,18 @@
 import React, { useState } from 'react'
-import styles from "./Login.module.css";
+import { useNavigate } from 'react-router-dom';
 import Portas from '../../components/PortalsModal/Portas';
+import SingIn from '../../container/Login/SingIn';
 
 function Login() {
 
-  const [openModel, setOpenModel] = useState(false);
+  const [openModel, setOpenModel] = useState(true);
   const [isState, setIsState] = useState(true);
 
-  function openModelLogin(){
-    setOpenModel(true);
-    setIsState(true);
-  }
+  const navigate = useNavigate();
 
   function closeModal(){
     setOpenModel(false);
+    navigate("/")
   }
 
   function setIsStateModle() {
@@ -22,12 +21,14 @@ function Login() {
 
   return (
     <>
-        <div>
+        {/* <div>
           <button onClick={openModelLogin} className={styles.sign_in}>Sign in</button>
-        </div>
+        </div> */}
 
         {
-          openModel && <Portas onClose={closeModal} isState={isState} setIsState={setIsStateModle} />
+          openModel && <Portas >
+            <SingIn onClose={closeModal} setIsState={setIsStateModle} />
+          </Portas>
         }
 
     </>

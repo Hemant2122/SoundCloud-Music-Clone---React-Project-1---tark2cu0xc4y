@@ -2,9 +2,9 @@ import { NavLink } from "react-router-dom";
 import Logo from "../../container/Logo/Logo";
 import SearchInput from "../../container/SearchInput/SearchInput";
 import styles from "./Header.module.css";
-import Login from "../../container/Login/Login";
-import SingUp from "../../container/SingUp/SingUp";
 import { HiDotsHorizontal } from "react-icons/hi";
+import loginStyles from "../../container/Login/Login.module.css";
+import signUpStyles from "../../container/SingUp/SingUp.module.css";
 
 function Header() {
   return (
@@ -30,10 +30,10 @@ function Header() {
           <SearchInput />
         </ul>
         <ul>
-          <Login />
+          <NavLink to={"/login"}><button className={loginStyles.sign_in}>Sign in</button></NavLink>
         </ul>
         <ul>
-          <SingUp />
+          <NavLink to={"/signup"}><button className={signUpStyles.SingUp}>Create account</button> </NavLink>
         </ul>
         <ul className={styles.upload}>
             <NavLink to={"/upload"} >Upload</NavLink>

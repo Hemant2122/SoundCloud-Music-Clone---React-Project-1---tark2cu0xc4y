@@ -7,17 +7,15 @@ import CreateAccount from '../../container/SingUp/CreateAccount';
 import SingIn from '../../container/Login/SingIn';
 
 
-export default function Portas({onClose, setIsState, isState}) {
 
-  // const [isStateToggle, setIsStateToggle] = useState(false);
+export default function Portas({children}) {
 
   return (
     <>
       {
         createPortal(
             <div className={styles.portalModal}>
-              {isState && <SingIn onClose={onClose} setIsState={setIsState} />}
-              {!isState && <CreateAccount onClose={onClose} setIsState={setIsState} />}
+              {children}
             </div>, document.getElementById("modal-root")
         )
       }

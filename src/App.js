@@ -7,6 +7,10 @@ import Library from "./pages/Library/Library";
 import Upload from "./pages/Upload/Upload";
 import PageMore from "./pages/PageMore/PageMore";
 import Metroboomin from "./pages/Metroboomin/Metroboomin";
+import Login from "./pages/signIn/Login";
+import SingUp from "./pages/SignUp/SingUp";
+import SingIn from "./container/Login/SingIn";
+import Portas from "./components/PortalsModal/Portas";
 
 function App() {
   return (
@@ -22,6 +26,8 @@ function App() {
               <Route path="/library" element={<Library />}></Route>
               <Route path="/upload" element={<Upload />}></Route>
               <Route path="/pages" element={<PageMore />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/signup" element={<SingUp />}></Route>
             </Routes>
           </div>
         </div>

@@ -1,20 +1,19 @@
 import React, { useState } from 'react'
-import styles from "./SingUp.module.css";
+import { useNavigate } from 'react-router-dom';
 import Portas from '../../components/PortalsModal/Portas';
+import CreateAccount from '../../container/SingUp/CreateAccount';
+
 
 function SingUp() {
 
-  const [openModel, setOpenModel] = useState(false);
+  const [openModel, setOpenModel] = useState(true);
   const [isState, setIsState] = useState(true);
 
-  function openModelAccount(){
-    setOpenModel(true);
-    setIsState(false);
-    
-  }
+  const navigate = useNavigate();
 
   function closeModal(){
     setOpenModel(false);
+    navigate("/");
   }
 
   function setIsStateModle(){
@@ -23,13 +22,17 @@ function SingUp() {
 
   return (
     <>
-      <div>
+      {/* <div>
         <button onClick={openModelAccount} className={styles.SingUp}>Create account</button> 
-      </div>
+      </div> */}
 
       {
-        openModel && <Portas onClose={closeModal} isState={isState} setIsState={setIsStateModle} />
+        openModel && <Portas >
+          <CreateAccount onClose={closeModal} setIsState={setIsStateModle} />
+        </Portas>
       }
+
+
     </>
   )
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "../SingUp/CreateAccount.module.css";
 import { IoCloseSharp } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 function SingIn({onClose, setIsState}) {
 
@@ -8,11 +9,53 @@ function SingIn({onClose, setIsState}) {
         email: "",
         password: "",
     });
-    
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
-    
-    console.log(formVal, "formVal");
+
+    const navigate = useNavigate();
+
+
+    function submitForm(){
+      async function signIn(){
+
+        const url = "https://academics.newtonschool.co/api/v1/user/login";
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("projectID", "tark2cu0xc4y");
+
+        const raw = JSON.stringify({
+          "email": formVal.email,
+          "password": formVal.password,
+          "appType": "music"
+        });
+
+        const requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow"
+        };
+
+        const response = await fetch(url, requestOptions);
+        const data = await response.json();
+
+        const token = data?.token;
+        const name = data?.data?.user?.name;
+        const email = data?.data?.user?.email;
+
+        if(data.status === "fail"){
+          setError(data.message);
+        }else {
+            setSuccess(data.status);
+        }
+
+        console.log(token, name, email, "data login");
+        
+      }
+
+      signIn();
+    }
+
     
     function signInFormHandler(e, key){
         const val = e.target.value;
@@ -31,13 +74,13 @@ function SingIn({onClose, setIsState}) {
         const emailVal = regex.test(formVal.email);
         
         if(formVal.email === "" && formVal.password === ""){
-            setError("The name, email and password is required !");
+          setError("The name, email and password is required !");
         }else if(formVal.email === "" || !emailVal){
-            setError("The email is required !");
+          setError("The email is required !");
         }else if(formVal.password === ""){
-            setError("The password is required !");
+          setError("The password is required !");
         }else{
-            
+          submitForm();
         }
     
     }
@@ -83,7 +126,7 @@ function SingIn({onClose, setIsState}) {
                 <button className={styles.createAccount_btn}>Sign in</button>
                 <p>
                     Dont`t have an account? <span onClick={() => {
-                        setIsState(false)
+                        navigate("/signup");
                     }} id={styles.sing_in}>Sign up</span>
                 </p>
               </div>

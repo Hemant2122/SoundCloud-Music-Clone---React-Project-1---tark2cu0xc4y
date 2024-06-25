@@ -1,0 +1,31 @@
+.musicPlayer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0px;
+    width: 100vw;
+    height: 48px;
+    background-color: #f2f2f2;
+    border: 1px solid rgb(180 176 176);
+
+    .audio_player{
+        width: 45vw;
+        height: 45px;
+    }
+
+    .image{
+        height: 40px;
+        width: 40px;
+        margin: 0 10px;
+    }
+
+    .artist_title{
+
+        .artist_name{
+            font-size: 13px;
+            font-weight: bold;
+            color: #7c7a7a;
+        }
+    }
+}
