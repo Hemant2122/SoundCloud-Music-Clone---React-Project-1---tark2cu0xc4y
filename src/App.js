@@ -11,6 +11,7 @@ import Login from "./pages/signIn/Login";
 import SingUp from "./pages/SignUp/SingUp";
 import SingIn from "./container/Login/SingIn";
 import Portas from "./components/PortalsModal/Portas";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 function App() {
   return (
@@ -22,8 +23,16 @@ function App() {
             <Routes>
               <Route path="/" element={<Metroboomin />}></Route>
               <Route path="/home" element={<Home />}></Route>
-              <Route path="/feed" element={<Feed />}></Route>
-              <Route path="/library" element={<Library />}></Route>
+              <Route path="/feed" element={
+                <ProtectedRoute>
+                  <Feed />
+                </ProtectedRoute>
+              }></Route>
+              <Route path="/library" element={
+                <ProtectedRoute>
+                  <Library />
+                </ProtectedRoute>
+              }></Route>
               <Route path="/upload" element={<Upload />}></Route>
               <Route path="/pages" element={<PageMore />}></Route>
               <Route path="/login" element={<Login />}></Route>
