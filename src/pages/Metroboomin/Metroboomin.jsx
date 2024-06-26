@@ -12,6 +12,9 @@ import { IoEarth } from "react-icons/io5";
 import { RiFacebookFill } from "react-icons/ri";
 import { CgPlayPause } from "react-icons/cg";
 import MusicPlayer from "../../components/Music/MusicPlayer";
+import { UserContext } from "../../Provider/UserProvider";
+import { useContext } from "react";
+import useUser from "../../CustomHook/useUser";
 
 function Metroboomin() {
   const [musicList, setMusicList] = useState([]);
@@ -20,38 +23,52 @@ function Metroboomin() {
   const [getMusic, setMusic] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   
+  // const contextData = useContext(UserContext);
+  // const { searchText } = contextData;
+
+  const { searchText } = useUser();
 
   useEffect(() => {
-    async function fetchMusicList() {
-      setIsLoading(true);
-      try {
-        const url = "https://academics.newtonschool.co/api/v1/music/song";
-        const myHeaders = new Headers();
-        myHeaders.append("projectID", "tark2cu0xc4y");
-
-        const requestOptions = {
-          method: "GET",
-          headers: myHeaders,
-          redirect: "follow",
-        };
-
-        const response = await fetch(url, requestOptions);
-        const result = await response.json();
-        const data = result.data;
-
-        setMusicList(data);
-        // setTimeout(() => {
-        setIsLoading(false);
-        // }, 1000);
-
-        // console.log(data, "data");
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
     fetchMusicList();
   }, []);
+
+  useEffect(() => {
+    fetchMusicList();
+  }, [searchText]);
+
+  async function fetchMusicList() {
+    setIsLoading(true);
+    try {
+      let url;
+      // let url = "https://academics.newtonschool.co/api/v1/music/song";
+      if(searchText!=null && searchText!=""){
+        url = `https://academics.newtonschool.co/api/v1/music/song?search={"title":"${searchText}"}`;
+      }else{
+        url = "https://academics.newtonschool.co/api/v1/music/song";
+      }
+      const myHeaders = new Headers();
+      myHeaders.append("projectID", "tark2cu0xc4y");
+
+      const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      const response = await fetch(url, requestOptions);
+      const result = await response.json();
+      const data = result.data;
+
+      setMusicList(data);
+      // setTimeout(() => {
+      setIsLoading(false);
+      // }, 1000);
+
+      // console.log(data, "data");
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>
@@ -178,7 +195,7 @@ function Metroboomin() {
                             setMusic(true);
                             setSelectMusic({
                               thumbnail,
-                              artist: artist[0].name,
+                              artist: artist[0]?.name,
                               audio_url,
                               title,
                               _id,
@@ -220,11 +237,11 @@ function Metroboomin() {
                               </div>
                               <div className={styles.artist_title_description}>
                                 <div className={styles.artist_name}>
-                                  {artist[0].name}
+                                  {artist[0]?.name}
                                 </div>
                                 <div className={styles.title}>{title}</div>
                                 <div className={styles.description}>
-                                  {artist[0].description}
+                                  {artist[0]?.description}
                                 </div>
                               </div>
                             </div>
