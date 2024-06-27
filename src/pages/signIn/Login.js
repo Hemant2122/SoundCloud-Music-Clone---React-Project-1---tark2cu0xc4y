@@ -6,17 +6,12 @@ import SingIn from '../../container/Login/SingIn';
 function Login() {
 
   const [openModel, setOpenModel] = useState(true);
-  const [isState, setIsState] = useState(true);
 
   const navigate = useNavigate();
 
   function closeModal(){
     setOpenModel(false);
     navigate("/")
-  }
-
-  function setIsStateModle() {
-    setIsState(false)
   }
 
   return (
@@ -27,7 +22,7 @@ function Login() {
 
         {
           openModel && <Portas >
-            <SingIn onClose={closeModal} setIsState={setIsStateModle} />
+            <SingIn onClose={closeModal} />
           </Portas>
         }
 

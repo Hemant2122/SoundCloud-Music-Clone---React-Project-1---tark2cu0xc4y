@@ -3,7 +3,7 @@ import styles from "./CreateAccount.module.css";
 import { IoCloseSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
-function CreateAccount({onClose, setIsState}) {
+function CreateAccount({onClose}) {
 
   const [formVal, setFormVal] = useState({
     name: "",
