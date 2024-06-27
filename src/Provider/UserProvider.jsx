@@ -19,7 +19,7 @@ const UserProvider = (props) => {
     setToken(sessionStorage.getItem("token") || '');
   }, []);
 
-  console.log(getName, getToken, "User Provider logs");
+  // console.log(getName, getToken, "User Provider logs");
 
   const { children } = props;
 

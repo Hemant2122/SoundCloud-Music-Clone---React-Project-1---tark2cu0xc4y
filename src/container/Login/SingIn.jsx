@@ -17,7 +17,7 @@ function SignIn({ onClose }) {
   const contextData = useContext(UserContext);
   const { nameHandler, tokenHandler } = contextData;
 
-  console.log(contextData, "contextData");
+  // console.log(contextData, "contextData");
 
   async function submitForm() {
     const url = "https://academics.newtonschool.co/api/v1/user/login";
@@ -51,6 +51,10 @@ function SignIn({ onClose }) {
         tokenHandler(token);
         nameHandler(name);
         setSuccess("Login successful!");
+        setTimeout(() => {
+          navigate("/");
+          // location.reload();
+        }, 2000)
       } else {
         setError(data.message || "Login failed");
       }
@@ -83,10 +87,6 @@ function SignIn({ onClose }) {
     } else {
       submitForm();
 
-      setTimeout(() => {
-        navigate("/");
-        // location.reload();
-      }, 2000)
     }
   }
 

@@ -57,6 +57,9 @@ function CreateAccount({onClose}) {
                 setError(data.message);
             }else {
                 setSuccess("Account created " + data.status);
+                setTimeout(() => {
+                  navigate("/login");
+                }, 3000);
             }
 
         } catch (error) {
@@ -83,9 +86,6 @@ function CreateAccount({onClose}) {
         setError("The password is required !");
     }else{
         signUpForm();
-        setTimeout(() => {
-          navigate("/login");
-        }, 3000);
     }
 
   }
