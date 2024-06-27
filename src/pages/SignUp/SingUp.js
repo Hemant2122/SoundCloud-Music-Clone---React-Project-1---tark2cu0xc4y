@@ -7,7 +7,6 @@ import CreateAccount from '../../container/SingUp/CreateAccount';
 function SingUp() {
 
   const [openModel, setOpenModel] = useState(true);
-  const [isState, setIsState] = useState(true);
 
   const navigate = useNavigate();
 
@@ -16,9 +15,6 @@ function SingUp() {
     navigate("/");
   }
 
-  function setIsStateModle(){
-    setIsState(true)
-  }
 
   return (
     <>
@@ -28,7 +24,7 @@ function SingUp() {
 
       {
         openModel && <Portas >
-          <CreateAccount onClose={closeModal} setIsState={setIsStateModle} />
+          <CreateAccount onClose={closeModal} />
         </Portas>
       }
 
