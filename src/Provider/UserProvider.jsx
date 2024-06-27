@@ -38,7 +38,7 @@ const UserProvider = (props) => {
     setName("");
     setToken("");
     sessionStorage.clear();
-    location.reload();
+    // location.reload();
   };
 
   const valueObj = {

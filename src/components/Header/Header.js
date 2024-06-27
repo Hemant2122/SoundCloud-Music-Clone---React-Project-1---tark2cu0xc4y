@@ -5,8 +5,14 @@ import styles from "./Header.module.css";
 import { HiDotsHorizontal } from "react-icons/hi";
 import loginStyles from "../../container/Login/Login.module.css";
 import signUpStyles from "../../container/SingUp/SingUp.module.css";
+import useUser from "../../CustomHook/useUser";
+import Logout from "../../container/Logout/Logout";
+import Profile from "../../container/Profile/Profile";
 
 function Header() {
+
+  const { getToken } = useUser();
+
   return (
     <>
       <nav className={styles.headerContainer}>
@@ -29,11 +35,17 @@ function Header() {
         <ul>
           <SearchInput />
         </ul>
-        <ul>
+        <ul style={{display: getToken ? "none" : "block"}}>
           <NavLink to={"/login"}><button className={loginStyles.sign_in}>Sign in</button></NavLink>
         </ul>
-        <ul>
+        <ul style={{display: getToken ? "none" : "block"}}>
           <NavLink to={"/signup"}><button className={signUpStyles.SingUp}>Create account</button> </NavLink>
+        </ul>
+        <ul style={{display: !getToken ? "none" : "block"}}>
+          <NavLink><Profile /></NavLink>
+        </ul>
+        <ul style={{display: !getToken ? "none" : "block"}}>
+          <NavLink><Logout /></NavLink>
         </ul>
         <ul className={styles.upload}>
             <NavLink to={"/upload"} >Upload</NavLink>

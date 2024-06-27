@@ -1,0 +1,40 @@
+.profile_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin: 0 15px;
+
+    .profile_icon{
+        color: #fff;
+        width: 30px;
+        height: 30px;
+    }
+
+    .user_name{
+        color: #fff;
+    }
+}
+
+.profile_function{
+    width: 145px;
+    height: auto;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid rgb(140 138 138);
+    position: absolute;
+    top: 45px;
+    border-radius: 5px;
+    cursor: auto;
+
+    .password_reset{
+        margin-bottom: 5px;
+        padding: 5px 3px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .password_reset:hover{
+        background: #f0f0f0;
+    }
+}

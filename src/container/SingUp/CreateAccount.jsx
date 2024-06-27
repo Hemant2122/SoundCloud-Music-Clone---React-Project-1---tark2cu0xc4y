@@ -56,7 +56,7 @@ function CreateAccount({onClose, setIsState}) {
             if(data.status === "fail"){
                 setError(data.message);
             }else {
-                setSuccess(data.status);
+                setSuccess("Account created " + data.status);
             }
 
         } catch (error) {
@@ -83,6 +83,9 @@ function CreateAccount({onClose, setIsState}) {
         setError("The password is required !");
     }else{
         signUpForm();
+        setTimeout(() => {
+          navigate("/login");
+        }, 3000);
     }
 
   }
@@ -106,6 +109,7 @@ function CreateAccount({onClose, setIsState}) {
               onChange={(e) => {
                 signUpFormHandler(e, "name")
                 setError("")
+                setSuccess("")
               }}
             />
           </div>
@@ -119,6 +123,7 @@ function CreateAccount({onClose, setIsState}) {
               onChange={(e) => {
                 signUpFormHandler(e, "email")
                 setError("")
+                setSuccess("")
               }}
             />
           </div>
@@ -132,6 +137,7 @@ function CreateAccount({onClose, setIsState}) {
               onChange={(e) => {
                 signUpFormHandler(e, "password")
                 setError("")
+                setSuccess("")
               }}
             />
           </div>

@@ -82,6 +82,11 @@ function SignIn({ onClose }) {
       setError("The password is required!");
     } else {
       submitForm();
+
+      setTimeout(() => {
+        navigate("/");
+        // location.reload();
+      }, 2000)
     }
   }
 
