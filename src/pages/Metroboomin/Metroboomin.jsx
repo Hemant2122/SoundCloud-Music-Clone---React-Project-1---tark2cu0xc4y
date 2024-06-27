@@ -22,11 +22,17 @@ function Metroboomin() {
   const [isLoading, setIsLoading] = useState(false);
   const [getMusic, setMusic] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [favSongList, setFavSongList] = useState([]);
+  console.log(favSongList, "favSongList");
+
+
+  const isFavSong = favSongList?.filter((item) => item._id === selectMusic._id).length;
+
+
   
   // const contextData = useContext(UserContext);
   // const { searchText } = contextData;
-
-  const { searchText } = useUser();
+  const { searchText, getToken } = useUser();
 
   useEffect(() => {
     fetchMusicList();
@@ -69,6 +75,35 @@ function Metroboomin() {
       console.log(error);
     }
   }
+
+  useEffect(() => {
+    async function getListOfFavoSong(){
+      try {
+          const url = "https://academics.newtonschool.co/api/v1/music/favorites/like";
+          const myHeaders = new Headers();
+          myHeaders.append("Authorization", `Bearer ${getToken}`);
+          myHeaders.append("projectID", "tark2cu0xc4y");
+
+          const requestOptions = {
+          method: "GET",
+          headers: myHeaders,
+          redirect: "follow"
+          };
+
+          const response = await fetch(url, requestOptions);
+          const data = await response.json();
+          
+          const songs = data?.data?.songs;
+
+          setFavSongList(songs);
+
+      } catch (error) {
+          console.error(error);
+      }
+    };
+
+    getListOfFavoSong();
+  }, [])
 
   return (
     <>
@@ -334,6 +369,7 @@ function Metroboomin() {
           thumbnail={selectMusic.thumbnail}
           isPlaying={isPlaying}
           setIsPlaying={setIsPlaying}
+          isFav={isFavSong}
         />
       )}
     </>

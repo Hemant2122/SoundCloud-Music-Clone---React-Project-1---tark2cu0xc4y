@@ -28,4 +28,19 @@
             color: #7c7a7a;
         }
     }
+
+    .like_song{
+        display: flex;
+        margin-left: 15px;
+
+        .like_unLike{
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .unLike{
+            color: #f44336;
+            
+        }
+    }
 }

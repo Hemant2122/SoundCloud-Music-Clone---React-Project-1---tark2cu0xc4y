@@ -1,9 +1,45 @@
 import { useEffect } from "react";
 import styles from "./MusicPlayer.module.css";
+import { FcLike } from "react-icons/fc";
+import { TbHeart } from "react-icons/tb";
+import useUser from "../../CustomHook/useUser";
+import { useNavigate } from "react-router-dom";
 
 function MusicPlayer(props) {
 
-    const { thumbnail, artist, audio_url, title, _id, isPlaying = false, setIsPlaying } = props;
+    const { thumbnail, artist, audio_url, title, _id, isPlaying = false, setIsPlaying, isFav } = props;
+    
+    const { getToken } = useUser();
+    const navigate = useNavigate();
+
+    async function likeUnLikeSong(){
+        try {
+            const url = "https://academics.newtonschool.co/api/v1/music/favorites/like";
+            const myHeaders = new Headers();
+            myHeaders.append("Authorization", `Bearer ${getToken}`);
+            myHeaders.append("projectID", "tark2cu0xc4y");
+            myHeaders.append("Content-Type", "application/json");
+
+            const raw = JSON.stringify({
+            "songId": _id
+            });
+
+            const requestOptions = {
+            method: "PATCH",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+            };
+
+            const response = await fetch(url, requestOptions);
+            const data = await response.json();
+            
+            // console.log(data, "likeUnLikeSong");
+
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     useEffect(() => {
         const sound = () => {
@@ -43,6 +79,34 @@ function MusicPlayer(props) {
                     {title}
                 </div>
             </div>
+
+            {
+                getToken ? (
+                    <div className={styles.like_song}>
+                        {
+                            isFav ? (
+                                <div onClick={() => {
+                                    likeUnLikeSong();
+                                }}>
+                                    <FcLike className={styles.like_unLike} />
+                                </div>
+                            ) : (
+                                <div onClick={() => {
+                                    likeUnLikeSong();
+                                }}>
+                                    <TbHeart  className={[`${styles.like_unLike} ${styles.unLike}`]} />
+                                </div>
+                            )
+                        }
+                    </div>
+                ) : (
+                    <div onClick={() => {
+                        navigate("/login");
+                    }} className={styles.like_song}>
+                        <TbHeart className={[`${styles.like_unLike} ${styles.unLike}`]} />
+                    </div>
+                )
+            }
         </div>
     </>
   )
