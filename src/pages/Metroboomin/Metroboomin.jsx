@@ -15,6 +15,7 @@ import MusicPlayer from "../../components/Music/MusicPlayer";
 import { UserContext } from "../../Provider/UserProvider";
 import { useContext } from "react";
 import useUser from "../../CustomHook/useUser";
+import LikeMusic from "../../container/Metroboomin/LikeMusic";
 
 function Metroboomin() {
   const [musicList, setMusicList] = useState([]);
@@ -23,13 +24,11 @@ function Metroboomin() {
   const [getMusic, setMusic] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [favSongList, setFavSongList] = useState([]);
-  console.log(favSongList, "favSongList");
 
+  const isFavSong = favSongList?.filter(
+    (item) => item._id === selectMusic._id
+  ).length;
 
-  const isFavSong = favSongList?.filter((item) => item._id === selectMusic._id).length;
-
-
-  
   // const contextData = useContext(UserContext);
   // const { searchText } = contextData;
   const { searchText, getToken } = useUser();
@@ -47,9 +46,9 @@ function Metroboomin() {
     try {
       let url;
       // let url = "https://academics.newtonschool.co/api/v1/music/song";
-      if(searchText!=null && searchText!=""){
+      if (searchText != null && searchText != "") {
         url = `https://academics.newtonschool.co/api/v1/music/song?search={"title":"${searchText}"}`;
-      }else{
+      } else {
         url = "https://academics.newtonschool.co/api/v1/music/song";
       }
       const myHeaders = new Headers();
@@ -77,33 +76,33 @@ function Metroboomin() {
   }
 
   useEffect(() => {
-    async function getListOfFavoSong(){
+    async function getListOfFavoSong() {
       try {
-          const url = "https://academics.newtonschool.co/api/v1/music/favorites/like";
-          const myHeaders = new Headers();
-          myHeaders.append("Authorization", `Bearer ${getToken}`);
-          myHeaders.append("projectID", "tark2cu0xc4y");
+        const url =
+          "https://academics.newtonschool.co/api/v1/music/favorites/like";
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${getToken}`);
+        myHeaders.append("projectID", "tark2cu0xc4y");
 
-          const requestOptions = {
+        const requestOptions = {
           method: "GET",
           headers: myHeaders,
-          redirect: "follow"
-          };
+          redirect: "follow",
+        };
 
-          const response = await fetch(url, requestOptions);
-          const data = await response.json();
-          
-          const songs = data?.data?.songs;
+        const response = await fetch(url, requestOptions);
+        const data = await response.json();
 
-          setFavSongList(songs);
+        const songs = data?.data?.songs;
 
+        setFavSongList(songs);
       } catch (error) {
-          console.error(error);
+        console.error(error);
       }
-    };
+    }
 
     getListOfFavoSong();
-  }, [])
+  }, []);
 
   return (
     <>
@@ -356,7 +355,9 @@ function Metroboomin() {
               </div>
             </div>
 
-            <div className={styles.like_music}>Like Music</div>
+            <div className={styles.like_music}>
+              <LikeMusic />
+            </div>
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 function MusicPlayer(props) {
 
-    const { thumbnail, artist, audio_url, title, _id, isPlaying = false, setIsPlaying, isFav } = props;
+    const { thumbnail, artist, audio_url, title, _id, isPlaying, setIsPlaying, isFav } = props;
     
     const { getToken } = useUser();
     const navigate = useNavigate();
