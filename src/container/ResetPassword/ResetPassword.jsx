@@ -64,6 +64,11 @@ function ResetPassword({onClose}) {
 
             if(data.status === "success"){
                 setSuccess("Password Change Successful");
+
+                setTimeout(() => {
+                  logout();
+                  onClose();
+                }, 2000)
             }
             
 
