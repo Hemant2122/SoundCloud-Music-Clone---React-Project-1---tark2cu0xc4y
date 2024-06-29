@@ -1,0 +1,10 @@
+.feed_containe{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .image{
+        width: 100vw;
+        height: 90vh;
+    }
+}

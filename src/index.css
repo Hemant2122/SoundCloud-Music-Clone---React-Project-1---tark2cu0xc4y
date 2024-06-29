@@ -11,4 +11,17 @@ body{
     display: none;
 }
 
+.coming_soon{
+    position: relative;
+    top: 10px;
+    left: -98px;
+}
+
+
+#dots{
+    font-size: 35px;
+    font-weight: 700;
+    bottom: 10px;
+}
+
 

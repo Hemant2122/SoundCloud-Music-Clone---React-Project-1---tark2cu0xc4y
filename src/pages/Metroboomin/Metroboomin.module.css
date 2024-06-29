@@ -327,3 +327,16 @@
         }
     }
 }
+
+.coming_soon{
+    position: relative;
+    top: 10px;
+    left: -98px;
+    display: none;
+}
+
+.items:hover{
+    .coming_soon{
+        display: block;
+    }
+}

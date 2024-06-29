@@ -16,6 +16,7 @@ import { UserContext } from "../../Provider/UserProvider";
 import { useContext } from "react";
 import useUser from "../../CustomHook/useUser";
 import LikeMusic from "../../container/Metroboomin/LikeMusic";
+import ComingSoon from "../../components/ComingSoon/ComingSoon";
 
 function Metroboomin() {
   const [musicList, setMusicList] = useState([]);
@@ -23,6 +24,7 @@ function Metroboomin() {
   const [isLoading, setIsLoading] = useState(false);
   const [getMusic, setMusic] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isDisplay, setIsDisplay] = useState(false);
   const [favSongList, setFavSongList] = useState([]);
 
   const isFavSong = favSongList?.filter(
@@ -155,53 +157,62 @@ function Metroboomin() {
               }}
               className={styles.sugetion}
             >
-              <div id={"items items_all"} className={styles.items}>
+              <div id={"items_all"}  className={styles.items}>
                 All
               </div>
-              <div id={"items items_popular"} className={styles.items}>
+              <div id={"items_popular"} className={styles.items}>
                 Popular tracks
               </div>
-              <div id={"items items_tracks"} className={styles.items}>
+              <div id={"items_tracks"} className={styles.items}>
                 Tracks
               </div>
-              <div id={"items items_albums"} className={styles.items}>
+              <div id={"items_albums"} className={styles.items}>
                 Albums
               </div>
-              <div id={"items items_playlists"} className={styles.items}>
+              <div id={"items_playlists"} className={styles.items}>
                 Playlists
               </div>
-              <div id={"items items_reposts"} className={styles.items}>
+              <div id={"items_reposts"} className={styles.items}>
                 Reposts
               </div>
             </div>
 
             <div className={styles.station_follow_share}>
-              <div
-                onClick={() => {
-                  alert("coming soon");
-                }}
-                className={[`${styles.station} ${styles.btn}`]}
-              >
-                <BiStation className={styles.icon} /> Station
+
+              <div className={styles.items}>
+                <div className={[`${styles.station} ${styles.btn}`]}>
+                  <BiStation className={styles.icon} /> Station
+                </div>
+                
+                <div className={styles.coming_soon}>
+                  <ComingSoon />
+                </div>
+                
               </div>
-              <div
-                onClick={() => {
-                  alert("coming soon");
-                }}
-                className={[`${styles.follow} ${styles.btn}`]}
-              >
-                <SlUserFollow className={styles.icon} />
-                Follow
+
+              <div className={styles.items}>
+                <div className={[`${styles.follow} ${styles.btn}`]}>
+                  <SlUserFollow className={styles.icon} />
+                  Follow
+                </div>
+                
+                <div className={styles.coming_soon}>
+                  <ComingSoon />
+                </div>
+                
               </div>
-              <div
-                onClick={() => {
-                  alert("coming soon");
-                }}
-                className={[`${styles.share} ${styles.btn}`]}
-              >
-                <FaShareSquare className={styles.icon} />
-                Share
+
+              <div  className={styles.items}>
+                <div className={[`${styles.share} ${styles.btn}`]}>
+                  <FaShareSquare className={styles.icon} />
+                  Share
+                </div>
+
+                <div className={styles.coming_soon}>
+                  <ComingSoon />
+                </div>
               </div>
+      
             </div>
           </div>
         </div>

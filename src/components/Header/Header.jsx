@@ -8,6 +8,8 @@ import signUpStyles from "../../container/SingUp/SingUp.module.css";
 import useUser from "../../CustomHook/useUser";
 import Logout from "../../container/Logout/Logout";
 import Profile from "../../container/Profile/Profile";
+import Upload from "../../pages/Upload/Upload";
+import PageMore from "../../pages/PageMore/PageMore";
 
 function Header() {
 
@@ -48,11 +50,13 @@ function Header() {
           <NavLink><Logout /></NavLink>
         </ul>
         <ul className={styles.upload}>
-            <NavLink to={"/upload"} >Upload</NavLink>
+            <NavLink ><Upload /></NavLink>
         </ul>
         <ul className={styles.pages}>
           <li>
-            <NavLink to={"/pages"} ><HiDotsHorizontal /></NavLink>
+            <NavLink>
+              <PageMore />
+            </NavLink>
           </li>
         </ul>
       </nav>

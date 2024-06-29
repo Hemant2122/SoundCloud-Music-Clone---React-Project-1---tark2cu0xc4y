@@ -1,0 +1,29 @@
+.coming_soon_container{
+        display: flex;
+        position: absolute;
+        z-index: 100000;
+
+    .coming_soon{
+        display: flex;
+        width: 121px;
+        background-color: #f50;
+        color: #fff;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 0px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+
+
+        .box{
+            width: 15px;
+            height: 15px;
+            background-color: #f50;
+            rotate: 45deg;
+            position: relative;
+            left: 102px;
+            top: -12px;
+        }
+    }
+}
