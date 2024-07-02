@@ -1,0 +1,36 @@
+.carousel_container{
+    width: auto;
+    height: 280px;
+    padding: 23px 30px;
+    background-color: rgb(227, 225, 225);
+    overflow: auto;
+    
+
+    .card_container{
+
+        .image{
+            width: 180px;
+            height: auto;
+            cursor: default;
+        }
+
+        .details{
+
+            margin: 5px;
+            .mood{
+                font-weight: 500;
+            }
+
+            .discovery_playlists{
+                font-size: 13px;
+                color: gray;
+            }
+        }
+    }
+}
+
+
+
+.carousel_container::-webkit-scrollbar{
+    display: none;
+}

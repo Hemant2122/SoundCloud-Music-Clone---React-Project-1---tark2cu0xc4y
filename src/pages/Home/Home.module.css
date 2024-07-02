@@ -1,0 +1,41 @@
+.homeContainer{
+    display: flex;
+
+    .music_list_container{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 900px;
+        height: auto;
+        padding: 25px;
+        font-family: "Inter", sans-serif;
+
+
+        .main_heading{
+            font-size: 32px;
+            font-weight: 400;
+            border-bottom: 1px solid rgb(227, 225, 225);
+        }
+
+        .song_container{
+
+
+            .song_heading{
+                font-size: 26px;
+                font-weight: 400;
+                padding: 15px 0;
+            }
+        }
+    }
+
+    .app_store{
+        width: calc(1240px - 900px);
+        height: 93vh;
+        border-left: 1px solid rgb(227, 225, 225);
+        
+
+        position: sticky;
+        top: 46px;
+
+    }
+}
