@@ -31,11 +31,30 @@
     .app_store{
         width: calc(1240px - 900px);
         height: 93vh;
+        padding: 30px;
         border-left: 1px solid rgb(227, 225, 225);
         
 
         position: sticky;
         top: 46px;
+
+
+        .app_store_heading{
+
+        }
+
+        .app_logo_container{
+            display: flex;
+            gap: 10px;
+
+            .apple_store{
+                cursor: pointer;
+            }
+
+            .play_store{
+                cursor: pointer;
+            }
+        }
 
     }
 }
