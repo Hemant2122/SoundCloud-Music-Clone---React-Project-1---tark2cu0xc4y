@@ -16,7 +16,7 @@ function CarouselSlider() {
     initialSlide: 0,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 4,
@@ -25,11 +25,20 @@ function CarouselSlider() {
         },
       },
       {
+        breakpoint: 1120,
+        settings: {
+          slidesToShow: 3.5,
+          slidesToScroll: 3.5,
+          infinite: true,
+          // dots: true,
+        },
+      },
+      {
         breakpoint: 600,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          initialSlide: 3,
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
         },
       },
       {
