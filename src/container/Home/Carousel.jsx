@@ -3,9 +3,13 @@ import styles from "./carousel.module.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import MusicPlayer from "../../components/Music/MusicPlayer";
 
 function CarouselSlider() {
   const [musicList, setMusicList] = useState([]);
+  const [selectMusic, setSelectMusic] = useState({});
+  const [getMusic, setMusic] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   var settings = {
     // dots: true,
@@ -86,25 +90,45 @@ function CarouselSlider() {
       <div className={styles.carousel_container}>
         <Slider {...settings}>
           {musicList.map((music) => {
-            const { featured, audio_url, thumbnail, _id } = music;
+            const { featured, audio_url, title, thumbnail, _id } = music;
 
             return (
-              <div key={_id} className={styles.card_container}>
-                <div className={styles.image}>
-                  <img src={thumbnail} alt="thumbnail" />
-                </div>
-                <div className={styles.details}>
-                  <div className={styles.featured}>
-                    {featured == null ? "SoundCloud" : featured}
+              <div onClick={() => {
+                setMusic(true);
+                setSelectMusic({
+                  _id,
+                  title,
+                  thumbnail,
+                  audio_url,
+                });
+              }}>
+                <div key={_id} className={styles.card_container}>
+                  <div className={styles.image}>
+                    <img src={thumbnail} alt="thumbnail" />
                   </div>
-                  <div className={styles.discovery_playlists}>
-                    Discovery Playlists
+                  <div className={styles.details}>
+                    <div className={styles.featured}>
+                      {featured == null ? "SoundCloud" : featured}
+                    </div>
+                    <div className={styles.discovery_playlists}>
+                      Discovery Playlists
+                    </div>
                   </div>
                 </div>
               </div>
             );
           })}
         </Slider>
+        {getMusic && (
+          <MusicPlayer
+            _id={selectMusic._id}
+            title={selectMusic.title}
+            thumbnail={selectMusic.thumbnail}
+            audio_url={selectMusic.audio_url}
+            setIsPlaying={setIsPlaying}
+            // isFav={favSongList}
+          />
+        )}
       </div>
     </>
   );

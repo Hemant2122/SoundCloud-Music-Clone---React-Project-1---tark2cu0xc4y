@@ -71,8 +71,6 @@
     .homeContainer{
         width: 980px;
         overflow: auto;
-        display: flex;
-        justify-content: center;
         /* margin-left: 50px; */
     }
 
