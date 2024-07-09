@@ -35,6 +35,8 @@ function Metroboomin() {
   // const { searchText } = contextData;
   const { searchText, getToken } = useUser();
 
+  const [active, setActive] = useState(null);
+
   useEffect(() => {
     fetchMusicList();
   }, []);
@@ -151,28 +153,26 @@ function Metroboomin() {
             <div
               onClick={(e) => {
                 const value = e.target.id;
-
-                console.log(value, "value");
-                document.getElementById(value).style.color = "#f50";
+                setActive(value); 
               }}
               className={styles.sugetion}
             >
-              <div id={"items_all"}  className={styles.items}>
+              <div id="items_all"  className={[`${styles.items} ${active === "items_all" ? "active" : ""}`]}>
                 All
               </div>
-              <div id={"items_popular"} className={styles.items}>
+              <div id="items_popular" className={[`${styles.items} ${active === "items_popular" ? "active" : ""}`]}>
                 Popular tracks
               </div>
-              <div id={"items_tracks"} className={styles.items}>
+              <div id="items_tracks" className={[`${styles.items} ${active === "items_tracks" ? "active" : ""}`]}>
                 Tracks
               </div>
-              <div id={"items_albums"} className={styles.items}>
+              <div id={"items_albums"} className={[`${styles.items} ${active === "items_albums" ? "active" : ""}`]}>
                 Albums
               </div>
-              <div id={"items_playlists"} className={styles.items}>
+              <div id={"items_playlists"} className={[`${styles.items} ${active === "items_playlists" ? "active" : ""}`]}>
                 Playlists
               </div>
-              <div id={"items_reposts"} className={styles.items}>
+              <div id={"items_reposts"} className={[`${styles.items} ${active === "items_reposts" ? "active" : ""}`]}>
                 Reposts
               </div>
             </div>
