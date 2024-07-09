@@ -35,7 +35,12 @@ function Metroboomin() {
   // const { searchText } = contextData;
   const { searchText, getToken } = useUser();
 
-  const [active, setActive] = useState(null);
+  const [active, setActive] = useState("items_all");
+
+  function actionActive(e) {
+    const value = e.target.id;
+    setActive(value);
+  }
 
   useEffect(() => {
     fetchMusicList();
@@ -150,44 +155,83 @@ function Metroboomin() {
         {/* Music Container */}
         <div className={styles.music_container}>
           <div className={styles.music_sugetion_list}>
-            <div
-              onClick={(e) => {
-                const value = e.target.id;
-                setActive(value); 
-              }}
-              className={styles.sugetion}
-            >
-              <div id="items_all"  className={[`${styles.items} ${active === "items_all" ? "active" : ""}`]}>
+            <div className={styles.sugetion}>
+              <div
+                id="items_all"
+                className={[
+                  `${styles.items} ${active === "items_all" ? `${styles.active}` : ""}`,
+                ]}
+
+                onClick={actionActive}
+              >
                 All
               </div>
-              <div id="items_popular" className={[`${styles.items} ${active === "items_popular" ? "active" : ""}`]}>
+              <div
+                id="items_popular"
+                className={[
+                  `${styles.items} ${
+                    active === "items_popular" ? `${styles.active}` : ""
+                  }`,
+                ]}
+                onClick={actionActive}
+              >
                 Popular tracks
               </div>
-              <div id="items_tracks" className={[`${styles.items} ${active === "items_tracks" ? "active" : ""}`]}>
+              <div
+                id="items_tracks"
+                className={[
+                  `${styles.items} ${
+                    active === "items_tracks" ? `${styles.active}` : ""
+                  }`,
+                ]}
+                onClick={actionActive}
+              >
                 Tracks
               </div>
-              <div id={"items_albums"} className={[`${styles.items} ${active === "items_albums" ? "active" : ""}`]}>
+              <div
+                id={"items_albums"}
+                className={[
+                  `${styles.items} ${
+                    active === "items_albums" ? `${styles.active}` : ""
+                  }`,
+                ]}
+                onClick={actionActive}
+              >
                 Albums
               </div>
-              <div id={"items_playlists"} className={[`${styles.items} ${active === "items_playlists" ? "active" : ""}`]}>
+              <div
+                id={"items_playlists"}
+                className={[
+                  `${styles.items} ${
+                    active === "items_playlists" ? `${styles.active}` : ""
+                  }`,
+                ]}
+                onClick={actionActive}
+              >
                 Playlists
               </div>
-              <div id={"items_reposts"} className={[`${styles.items} ${active === "items_reposts" ? "active" : ""}`]}>
+              <div
+                id={"items_reposts"}
+                className={[
+                  `${styles.items} ${
+                    active === "items_reposts" ? `${styles.active}` : ""
+                  }`,
+                ]}
+                onClick={actionActive}
+              >
                 Reposts
               </div>
             </div>
 
             <div className={styles.station_follow_share}>
-
               <div className={styles.items}>
                 <div className={[`${styles.station} ${styles.btn}`]}>
                   <BiStation className={styles.icon} /> Station
                 </div>
-                
+
                 <div className={styles.coming_soon}>
                   <ComingSoon />
                 </div>
-                
               </div>
 
               <div className={styles.items}>
@@ -195,14 +239,13 @@ function Metroboomin() {
                   <SlUserFollow className={styles.icon} />
                   Follow
                 </div>
-                
+
                 <div className={styles.coming_soon}>
                   <ComingSoon />
                 </div>
-                
               </div>
 
-              <div  className={styles.items}>
+              <div className={styles.items}>
                 <div className={[`${styles.share} ${styles.btn}`]}>
                   <FaShareSquare className={styles.icon} />
                   Share
@@ -212,7 +255,6 @@ function Metroboomin() {
                   <ComingSoon />
                 </div>
               </div>
-      
             </div>
           </div>
         </div>

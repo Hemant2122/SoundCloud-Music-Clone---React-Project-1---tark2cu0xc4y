@@ -109,6 +109,12 @@
             .items:hover{
                 border-bottom: 2px solid black;
             }
+
+            .active{
+                color: #f50;
+                border-bottom: 2px solid #f50;
+
+            }
         }
 
         .station_follow_share{
