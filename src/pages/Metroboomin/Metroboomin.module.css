@@ -113,7 +113,10 @@
             .active{
                 color: #f50;
                 border-bottom: 2px solid #f50;
+            }
 
+            .active:hover{
+                border-bottom: 2px solid #f50;
             }
         }
 

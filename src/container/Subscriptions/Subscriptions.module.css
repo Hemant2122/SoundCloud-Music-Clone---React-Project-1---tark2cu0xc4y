@@ -1,0 +1,94 @@
+
+.subscriptions_container{
+    width: 500px;
+
+    .payment_method{
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+    
+    .opstions{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+
+        margin: 10px 0;
+
+        .payment{
+            cursor: pointer;
+        }
+    
+        .phonePe{
+            width: 120px;
+            height: auto;
+        }
+    
+        .googlePay{
+            width: 100px;
+            height: auto;
+        }
+    
+        .payPal{
+            width: 100px;
+            height: auto;
+        }
+    
+        .razorpay{
+            width: 120px;
+            height: auto;
+        }
+
+        .ATM_card{
+            width: 50px;
+        }
+    
+    }
+
+
+    .payment_details{
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+
+    .input_1_style{
+        width: 390px;
+        border: 2px solid black;
+        border-radius: 5px;
+        padding: 10px;
+
+        margin: 10px 0;
+    }
+
+    .expire_CVC{
+        display: flex;
+        gap: 10px;
+
+        .input_2_style{
+            width: 190px;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0px;
+        }
+    }
+
+
+    .pay_btn{
+        width: 400px;
+        padding: 7px 10px;
+        background: #f50;
+        color: #fff;
+
+        border-radius: 6px;
+        font-size: 20px;
+        margin-top: 10px;
+    }
+}
+
+
+.isActive{
+    padding-bottom: 5px;
+    border-bottom: 2px solid #f50;
+}
